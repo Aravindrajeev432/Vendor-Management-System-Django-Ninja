@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ninja import NinjaAPI
+
+from ninja_jwt.controller import NinjaJWTDefaultController
+from ninja_extra import NinjaExtraAPI
+from ninja_jwt.routers.obtain import obtain_pair_router
+
+
+api = NinjaAPI()
+api.add_router("/token", tags=["Auth"], router=obtain_pair_router)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api.urls),
 ]
