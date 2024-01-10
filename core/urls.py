@@ -22,12 +22,14 @@ from ninja_jwt.controller import NinjaJWTDefaultController
 from ninja_extra import NinjaExtraAPI
 from ninja_jwt.routers.obtain import obtain_pair_router
 
-
+from vendor.views import router as vendor_router
 api = NinjaAPI()
 api.add_router("/token", tags=["Auth"], router=obtain_pair_router)
+api.add_router('/vendors/', tags=['Vendor'], router=vendor_router)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', api.urls),
+    path("admin/", admin.site.urls),
+    path("api/", api.urls),
+    
 ]

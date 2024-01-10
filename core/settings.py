@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "ninja_jwt",
     # apps
     "vendor",
-    "purchase",
+    "purchase_and_performance",
 ]
 
 MIDDLEWARE = [
@@ -149,18 +149,24 @@ NINJA_JWT = {
     "USER_AUTHENTICATION_RULE": "ninja_jwt.authentication.default_user_authentication_rule",
     "AUTH_TOKEN_CLASSES": ("ninja_jwt.tokens.AccessToken",),
     "TOKEN_TYPE_CLAIM": "token_type",
-    "TOKEN_USER_CLASS": "ninja_jwt.models.TokenUser",
+    "TOKEN_USER_CLASS": "django.contrib.auth.models.User",
     "JTI_CLAIM": "jti",
     "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
     "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
     # For Controller Schemas
     # FOR OBTAIN PAIR
-    "TOKEN_OBTAIN_PAIR_INPUT_SCHEMA": "ninja_jwt.schema.TokenObtainPairInputSchema",
-    "TOKEN_OBTAIN_PAIR_REFRESH_INPUT_SCHEMA": "ninja_jwt.schema.TokenRefreshInputSchema",
+
+    "TOKEN_OBTAIN_PAIR_INPUT_SCHEMA": "core.auth.MyTokenObtainPairInputSchema",
+    "TOKEN_OBTAIN_PAIR_REFRESH_INPUT_SCHEMA": "core.auth.MyTokenRefreshInputSchema",
+    
     # FOR SLIDING TOKEN
-    "TOKEN_OBTAIN_SLIDING_INPUT_SCHEMA": "ninja_jwt.schema.TokenObtainSlidingInputSchema",
-    "TOKEN_OBTAIN_SLIDING_REFRESH_INPUT_SCHEMA": "ninja_jwt.schema.TokenRefreshSlidingInputSchema",
-    "TOKEN_BLACKLIST_INPUT_SCHEMA": "ninja_jwt.schema.TokenBlacklistInputSchema",
-    "TOKEN_VERIFY_INPUT_SCHEMA": "ninja_jwt.schema.TokenVerifyInputSchema",
+    # "TOKEN_OBTAIN_SLIDING_INPUT_SCHEMA": "ninja_jwt.schema.TokenObtainSlidingInputSchema",
+    # "TOKEN_OBTAIN_SLIDING_REFRESH_INPUT_SCHEMA": "ninja_jwt.schema.TokenRefreshSlidingInputSchema",
+    # "TOKEN_BLACKLIST_INPUT_SCHEMA": "ninja_jwt.schema.TokenBlacklistInputSchema",
+    # "TOKEN_VERIFY_INPUT_SCHEMA": "ninja_jwt.schema.TokenVerifyInputSchema",
 }
+
+# AUTHENTICATION_BACKENDS = [
+#     'core.auth.CustomAuthBackend',
+# ]
