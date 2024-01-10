@@ -9,6 +9,18 @@ __pycache__
 db.sqlite3
 media
 misc.txt
+
+
+### VisualStudioCode ###
+.vscode/*      # Maybe .vscode/**/* instead - see comments
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+
+
 # Backup files # 
 *.bak 
 
