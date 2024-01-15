@@ -14,22 +14,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django import urls
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from ninja import NinjaAPI
 
 from ninja_jwt.controller import NinjaJWTDefaultController
 from ninja_extra import NinjaExtraAPI
 from ninja_jwt.routers.obtain import obtain_pair_router
 
-from vendor.views import router as vendor_router
+from vendor.api import router as vendor_router
+
 api = NinjaAPI()
 api.add_router("/token", tags=["Auth"], router=obtain_pair_router)
-api.add_router('/vendors/', tags=['Vendor'], router=vendor_router)
+api.add_router("/vendors/", tags=["Vendor"], router=vendor_router)
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path("api/", api.urls),
+    path("admin/", admin.site.urls),
     
 ]
